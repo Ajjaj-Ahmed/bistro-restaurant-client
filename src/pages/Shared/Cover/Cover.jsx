@@ -1,9 +1,10 @@
 import React from 'react';
-import { Parallax, Background } from 'react-parallax';
+import { Parallax} from 'react-parallax';
 
 const Cover = ({img,title}) => {
     return (
         <Parallax
+        className='rounded-3xl'
         blur={{ min: -55, max: 50 }}
         bgImage={img}
         bgImageAlt="the menu"
@@ -18,7 +19,7 @@ const Cover = ({img,title}) => {
                         Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
                         quasi. In deleniti eaque aut repudiandae et a id nisi.
                     </p>
-                    <button className="btn btn-primary">Get Started</button>
+                    {/* <button className="btn btn-primary">Get Started</button> */}
                 </div>
             </div>
         </div>
