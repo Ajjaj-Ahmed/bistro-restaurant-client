@@ -11,7 +11,7 @@ const MenuCategory = ({ items, order, title }) => {
                     items.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
                 }
             </div>
-            <div className='text-center pt-5'>
+            <div className='text-center pt-5 mt-4'>
                 <Link to={`/order/${title}`}>
                     <button className='btn border-b-4'>{order}</button>
                 </Link>
