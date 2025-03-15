@@ -2,9 +2,12 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { MdOutlineShoppingCart } from "react-icons/md";
+import useCart from '../../../hooks/useCart';
+
 
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
+    const [cart] = useCart();
 
     const handleLogOut = () => {
         logOut()
@@ -18,7 +21,7 @@ const Navbar = () => {
         <li><Link to={'/secret'}>Secret</Link></li>
         <li><Link to={'/secret'}>
             <button className="btn">
-            <MdOutlineShoppingCart className='mr-2 text-2xl'/> <div className="badge badge-sm badge-secondary">0+</div>
+                <MdOutlineShoppingCart className='mr-2 text-2xl' /> <div className="badge badge-sm badge-secondary">{cart.length}</div>
             </button>
         </Link>
         </li>
