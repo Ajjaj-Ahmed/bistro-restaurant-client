@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { MdOutlineCalendarMonth, MdOutlineHome, MdOutlineList, MdOutlineReviews, MdOutlineShoppingCart } from "react-icons/md";
+import { MdOutlineCalendarMonth, MdOutlineHome, MdOutlineList, MdOutlineReviews, MdOutlineSearch, MdOutlineShoppingCart } from "react-icons/md";
 
 const Dashboard = () => {
     return (
-        <div className='flex items-center'>
+        <div className='flex'>
             {/* Dashboard side bar */}
             <div className="w-64 min-h-screen bg-orange-300">
         <ul className="menu p-4">
@@ -33,10 +33,21 @@ const Dashboard = () => {
                 <MdOutlineList className='text-white' /> 
                  My Bookings</NavLink>
             </li>
+            <div class="divider"></div>
+            <li className=''>                
+                <NavLink to={'/'}>
+                <MdOutlineHome className='text-white' /> 
+                 Home</NavLink>
+            </li>
+            <li className=''>                
+                <NavLink to={'/order/salad'}>
+                <MdOutlineSearch className='text-white' /> 
+                 Menu</NavLink>
+            </li>
         </ul>
             </div>
             {/* Dashboard sidebar */}
-            <div className='flex-1'>
+            <div className='flex-1 p-8'>
                 <Outlet></Outlet>
             </div>
         </div>
