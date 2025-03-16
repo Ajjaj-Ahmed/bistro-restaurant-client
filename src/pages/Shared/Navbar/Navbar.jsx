@@ -19,9 +19,10 @@ const Navbar = () => {
         <li><Link to={'/menu'}>Our Menu</Link></li>
         <li><Link to={'/order/salad'}>Order Food</Link></li>
         <li><Link to={'/secret'}>Secret</Link></li>
-        <li><Link to={'/secret'}>
+        <li><Link to={'/dashboard/cart'}>
             <button className="btn">
-                <MdOutlineShoppingCart className='mr-2 text-2xl' /> <div className="badge badge-sm badge-secondary">+{cart.length}</div>
+                <MdOutlineShoppingCart className='mr-2 text-2xl' /> 
+                <div className="badge badge-sm badge-secondary">+{cart.length}</div>
             </button>
         </Link>
         </li>
