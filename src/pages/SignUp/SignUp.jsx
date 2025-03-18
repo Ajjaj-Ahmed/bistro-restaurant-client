@@ -96,15 +96,16 @@ const SignUp = () => {
                                 {errors.password?.type === 'maxLength' && <span className='text-red-500'>Password must be less 12 characters</span>}
                                 {errors.password?.type === 'pattern' && <span className='text-red-500'>Password must have one upper, lower and a special character </span>}
 
-                                <div className='flex items-center justify-center gap-3 mt-3'>
-                                    <input className="btn btn-outline" type="submit" value="Sign Up" />
-                                    <SocialLogin></SocialLogin>
+                                <div className='mt-3'>
+                                    <input className="btn btn-outline" type="submit" value="Sign Up" />                                   
                                 </div>
                                
                             </fieldset>
                         </form>
                         <p className='text-center pb-4 font-medium'>Already have an Account ! <Link className='text-blue-600 font-semibold' to={'/login'}>Login</Link></p>
-
+                       <div className='text-center py-4 bg-green-300'>
+                       <SocialLogin></SocialLogin>
+                       </div>
                     </div>
                 </div>
             </div>
