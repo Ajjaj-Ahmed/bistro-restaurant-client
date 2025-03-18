@@ -5,37 +5,53 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import SocialLogin from '../../Components/SocialLogin/SocialLogin';
 
 // export default function App() {
 
 
 const SignUp = () => {
-
+    const axiosPublic = useAxiosPublic();
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
-    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
-        console.log(data);
+
         createUser(data.email, data.password)
-        .then(result=>{
-            const loggedUser = result.user;
-            console.log(loggedUser)
-            updateUserProfile(data.name, data.photoURL)
-            .then(()=>{
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "User Created Successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-                navigate('/')
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser)
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        
+                        // create user entry in the database
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                        .then(res=>{
+                            if(res.data.insertedId){
+                                console.log("user added to the database")
+                                reset();
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "User Created Successfully",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                navigate('/')
+                            }
+                        })
+                       
+                    })
+                    .catch(error => console.log(error))
             })
-            .catch(error=>console.log(error))            
-        })
-        reset();
+     
     }
 
 
@@ -80,12 +96,14 @@ const SignUp = () => {
                                 {errors.password?.type === 'maxLength' && <span className='text-red-500'>Password must be less 12 characters</span>}
                                 {errors.password?.type === 'pattern' && <span className='text-red-500'>Password must have one upper, lower and a special character </span>}
 
-                                <div className='flex justify-center'>
-                                    <input className="btn btn-outline mt-4" type="submit" value="Sign Up" />
+                                <div className='flex items-center justify-center gap-3 mt-3'>
+                                    <input className="btn btn-outline" type="submit" value="Sign Up" />
+                                    <SocialLogin></SocialLogin>
                                 </div>
+                               
                             </fieldset>
                         </form>
-                        <p className='text-center pb-2'><small>Already have an Account ! <Link to={'/login'}>Login</Link></small></p>
+                        <p className='text-center pb-4 font-medium'>Already have an Account ! <Link className='text-blue-600 font-semibold' to={'/login'}>Login</Link></p>
 
                     </div>
                 </div>
