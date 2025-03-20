@@ -15,7 +15,7 @@ const SignUp = () => {
     const axiosPublic = useAxiosPublic();
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile ,logOut} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
@@ -44,6 +44,7 @@ const SignUp = () => {
                                     showConfirmButton: false,
                                     timer: 1500
                                 });
+                                logOut();
                                 navigate('/')
                             }
                         })
@@ -96,7 +97,7 @@ const SignUp = () => {
                                 {errors.password?.type === 'maxLength' && <span className='text-red-500'>Password must be less 12 characters</span>}
                                 {errors.password?.type === 'pattern' && <span className='text-red-500'>Password must have one upper, lower and a special character </span>}
 
-                                <div className='mt-3'>
+                                <div className='mt-3 text-center'>
                                     <input className="btn btn-outline" type="submit" value="Sign Up" />                                   
                                 </div>
                                

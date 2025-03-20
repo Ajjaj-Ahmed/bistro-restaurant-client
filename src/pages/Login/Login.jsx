@@ -98,7 +98,7 @@ const Login = () => {
                                 </div>
                             </fieldset>
                         </form>
-                        <p className='text-center pb-2'><small>New Here? <Link to={'/signup'}>Create an account</Link></small></p>
+                        <p className='text-center pb-4 font-medium'>New Here? <Link className='text-blue-600' to={'/signup'}>Create an account</Link></p>
                     </div>
                 </div>
             </div>
