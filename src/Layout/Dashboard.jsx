@@ -1,16 +1,15 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { MdOutlineCalendarMonth, MdOutlineEmail, MdOutlineHome, MdOutlineHomeMax, MdOutlineList, MdOutlineReviews, MdOutlineSearch, MdOutlineShoppingCart } from "react-icons/md";
-import useCart from '../hooks/useCart';
+// import useCart from '../hooks/useCart';
 import { IoHomeOutline } from "react-icons/io5";
 import { FaBook, FaUsers, FaUtensils } from "react-icons/fa";
 import { CiCircleList } from "react-icons/ci";
+import useAdmin from '../hooks/useAdmin';
 
 const Dashboard = () => {
-    const [cart] = useCart();
-
-    // get isAdmin value from the database
-    const isAdmin = true;
+    
+    const [isAdmin] = useAdmin();
     return (
         <div className='flex'>
             {/* Dashboard side bar */}
