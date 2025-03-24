@@ -65,14 +65,14 @@ const AllUsers = () => {
             <SectionTitle subHeading={"How many"} heading={"MANAGE ALL USERS"}>
             </SectionTitle>
             <div>
-                <h2 className='text-3xl font-semibold'>TOTAL USERS: {users.length}</h2>
+                <h2 className='text-3xl font-semibold pb-4'>TOTAL USERS: {users.length}</h2>
                 <div>
                     <div className="overflow-x-auto">
                         <table className="table table-zebra">
                             {/* head */}
                             <thead>
-                                <tr>
-                                    <th></th>
+                                <tr className='bg-amber-400 text-center'>
+                                    <th>Serial</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
@@ -80,7 +80,7 @@ const AllUsers = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.map((user, index) => <tr key={user._id}>
+                                {users.map((user, index) => <tr className='text-center' key={user._id}>
                                     <th>{index + 1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>

@@ -46,7 +46,7 @@ const Cart = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className='text-xl font-semibold'>
+                        <tr className='text-xl font-semibold bg-amber-300'>
                             <th>#</th>
                             <th>Image</th>
                             <th>Name</th>

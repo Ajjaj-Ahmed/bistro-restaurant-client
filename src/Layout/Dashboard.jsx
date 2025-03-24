@@ -8,7 +8,7 @@ import { CiCircleList } from "react-icons/ci";
 import useAdmin from '../hooks/useAdmin';
 
 const Dashboard = () => {
-    
+
     const [isAdmin] = useAdmin();
     return (
         <div className='flex'>
@@ -18,7 +18,7 @@ const Dashboard = () => {
                     {
                         isAdmin ?
                             <>
-                            {/* admin part */}
+                                {/* admin part */}
                                 <li>
                                     <NavLink to={'/dashboard/adminHome'}>
                                         <IoHomeOutline className='text-white' />
@@ -26,23 +26,28 @@ const Dashboard = () => {
                                 </li>
                                 <li>
                                     <NavLink to={'/dashboard/addItems'}>
-                                    <FaUtensils className='text-white' />
+                                        <FaUtensils className='text-white' />
                                         Add Items</NavLink>
                                 </li>
                                 <li>
+                                    <NavLink to={'/dashboard/cart'}>
+                                        <MdOutlineShoppingCart className='text-white' />
+                                        My Cart</NavLink>
+                                </li>
+                                <li>
                                     <NavLink to={'/dashboard/manageItems'}>
-                                    <CiCircleList className='text-white' />
+                                        <CiCircleList className='text-white' />
                                         Manage Items</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to={'/dashboard/bookings'}>
-                                    <FaBook className='text-white' />
+                                        <FaBook className='text-white' />
                                         Manage Bookings</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to={'/dashboard/users'}>
-                                    <FaUsers className='text-white' />
-                                       All Users</NavLink>
+                                        <FaUsers className='text-white' />
+                                        All Users</NavLink>
                                 </li>
                             </> :
                             // user part
