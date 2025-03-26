@@ -1,37 +1,78 @@
 import React from 'react';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 import { useForm } from "react-hook-form"
+import { FaUtensils } from "react-icons/fa";
+import useAxiosPublic from '../../../hooks/useAxiosPublic'
 
-// DB_USER=bossUser
-// DB_PASS=9Tq6ly9bCt38rZm6
-// ACCESS_TOKEN_SECRET=875043790f2b3919b6ef159dc0120049ec31c2409083694f524d382aefcbad1279ca6f1aafba819d4b6488ea98090340ef8dd283c9707d07c491a03f11bf9809
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const AddItems = () => {
     const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => {
+    const axiosPublic = useAxiosPublic();
+
+    const onSubmit = async (data) => {
         console.log(data)
+        // image upload to imagbb and then get an url
+        const imageFile = {image : data.image[0]}
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers:{
+                'content-type':'multipart/form-data'
+            }
+        });
+        console.log(res.data);
     };
     return (
         <div>
             <SectionTitle heading={'Add AN ITEM'} subHeading={"---what's new?---"}></SectionTitle>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-                <label>First Name</label>
-                <input {...register("name")} />
-                <label>Item Category</label>
 
-                <select 
-                {...register("category")}  
-                className="select">
-                    <option disabled={true}>Select a Category</option>
-                    <option value="salad">Salad</option>
-                    <option value="pizza">Pizza</option>
-                    <option value="soup">Soup</option>
-                    <option value="dessert">Dessert</option>
-                    <option value="drniks">Drinks</option>
-                </select>
-                <input type="submit" />
+                <fieldset className="fieldset w-full mb-4">
+                    <legend className='fieldset-legend'>Recipe Name?</legend>
+                    <input type="text" className="input w-full"
+                        placeholder="Recipe Name"  {...register("name")} />
+                </fieldset>
+
+                <div className='flex gap-4 mb-4'>
+                    {/* category */}
+                    <fieldset className="fieldset w-full">
+                        <legend className='fieldset-legend'>Category</legend>
+                        <select
+                            defaultValue={'default'}
+                            {...register("category", { required: true })}
+                            className="select select-bordered w-full">
+                            <option disabled={true} value={'default'}>Select a Category</option>
+                            <option value="salad">Salad</option>
+                            <option value="pizza">Pizza</option>
+                            <option value="soup">Soup</option>
+                            <option value="dessert">Dessert</option>
+                            <option value="drniks">Drinks</option>
+                            <option value="popular">Popular</option>
+                            <option value="offered">Offered</option>
+                        </select>
+                    </fieldset>
+                    {/* price */}
+                    <fieldset className="fieldset w-full">
+                        <legend className='fieldset-legend'>Price</legend>
+                        <input type="text" className="input w-full"
+                            placeholder="Price"  {...register("price", { required: true })} />
+                    </fieldset>
+                </div>
+                {/* recipe details */}
+                <fieldset className="fieldset w-full mb-4 ">
+                    <legend className='fieldset-legend'>Recipe Details</legend>
+                    <textarea className="textarea w-full" placeholder="Recipe Details" {...register("recipe", { required: true })}></textarea>
+                </fieldset>
+                {/* image upload */}
+                <fieldset className="fieldset w-full mb-4">
+                    <input type="file" className="file-input file-input-ghost" {...register("image", { required: true })} />
+                </fieldset>
+
+                <div className='text-center'>
+                    <button className='btn btn-success'>Add Item <FaUtensils /></button>
+                </div>
             </form>
         </div>
     );
