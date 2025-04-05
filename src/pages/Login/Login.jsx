@@ -4,6 +4,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../Components/SocialLogin/SocialLogin';
 
 const Login = () => {
 
@@ -14,7 +15,7 @@ const Login = () => {
     const location = useLocation();
 
     const from = location.state?.from?.pathname || "/";
-    
+
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -50,9 +51,9 @@ const Login = () => {
                     }
                 });
                 navigate(from, { replace: true });
-                
+
             })
-            form.reset();
+        form.reset();
     }
 
     const handleValidateCaptcha = (e) => {
@@ -99,7 +100,11 @@ const Login = () => {
                             </fieldset>
                         </form>
                         <p className='text-center pb-4 font-medium'>New Here? <Link className='text-blue-600' to={'/signup'}>Create an account</Link></p>
+                        <div className='bg-green-400 text-center py-4'>
+                            <SocialLogin></SocialLogin>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </>

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const SocialLogin = () => {
-    const { googleSignin , logOut} = useAuth();
+    const { googleSignin} = useAuth();
     const axiosPublic = useAxiosPublic();
 
     const navigate = useNavigate()
