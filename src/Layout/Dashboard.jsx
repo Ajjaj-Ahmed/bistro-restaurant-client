@@ -6,10 +6,12 @@ import { IoHomeOutline } from "react-icons/io5";
 import { FaBook, FaUsers, FaUtensils } from "react-icons/fa";
 import { CiCircleList } from "react-icons/ci";
 import useAdmin from '../hooks/useAdmin';
+import useCart from '../hooks/useCart';
 
 const Dashboard = () => {
 
     const [isAdmin] = useAdmin();
+    const [cart] = useCart();
     return (
         <div className='flex'>
             {/* Dashboard side bar */}
@@ -58,14 +60,14 @@ const Dashboard = () => {
                                         User Home</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to={'/dashboard/reservatuib'}>
+                                    <NavLink to={'/dashboard/paymentHistory'}>
                                         <MdOutlineCalendarMonth className='text-white' />
-                                        Reservation</NavLink>
+                                        Payment History</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to={'/dashboard/cart'}>
                                         <MdOutlineShoppingCart className='text-white' />
-                                        My Cart</NavLink>
+                                        My Cart ({cart.length})</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to={'/dashboard/review'}>
