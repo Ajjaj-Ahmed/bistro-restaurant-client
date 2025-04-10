@@ -36,15 +36,11 @@ const Dashboard = () => {
                                         <MdOutlineShoppingCart className='text-white' />
                                         My Cart</NavLink>
                                 </li>
+                                
                                 <li>
                                     <NavLink to={'/dashboard/manageItems'}>
-                                        <CiCircleList className='text-white' />
-                                        Manage Items</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to={'/dashboard/bookings'}>
                                         <FaBook className='text-white' />
-                                        Manage Bookings</NavLink>
+                                        Manage Items</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to={'/dashboard/users'}>
@@ -74,12 +70,7 @@ const Dashboard = () => {
                                         <MdOutlineReviews className='text-white' />
                                         Add Review</NavLink>
                                 </li>
-                                <li>
-                                    <NavLink to={'/dashboard/bookings'}>
-                                        <MdOutlineList className='text-white' />
-                                        My Bookings</NavLink>
-                                </li>
-                            </>
+                        </>
                     }
                     <div class="divider"></div>
 
